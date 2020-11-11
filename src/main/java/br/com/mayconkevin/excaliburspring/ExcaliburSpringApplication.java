@@ -52,7 +52,71 @@ public class ExcaliburSpringApplication {
 		
 		warframe = Nivek.getList().get(0);
 		
+		helminth.Subsuming("Zephyr");
+		helminth.Subsuming("Chroma");
+
+		
+
+		lists.subsumingList.get().add("ASH", "FORGE");
+		lists.subsumingList.get().add("ATLAS", "?");
+		lists.subsumingList.get().add("BARUUK", "?");
+		lists.subsumingList.get().add("BANSHEE", "FORGE");
+		lists.subsumingList.get().add("CHROMA", "SUBSUMING");
+		lists.subsumingList.get().add("EMBER", "?");
+		lists.subsumingList.get().add("EQUINOX", "CRAFTING");
+		lists.subsumingList.get().add("EXCALIBUR", "?");
+		lists.subsumingList.get().add("FROST", "?");
+		lists.subsumingList.get().add("GARA", "?");
+		lists.subsumingList.get().add("GARUDA", "?");
+		lists.subsumingList.get().add("GAUSS", "?");
+		lists.subsumingList.get().add("GRENDEL", "?");
+		lists.subsumingList.get().add("HARROW", "?");
+		lists.subsumingList.get().add("HILDRYN", "?");
+		lists.subsumingList.get().add("INAROS", "?");
+		lists.subsumingList.get().add("IVARA", "?");
+		lists.subsumingList.get().add("KHORA", "?");
+		lists.subsumingList.get().add("LOKI", "?");
+		lists.subsumingList.get().add("LIMBO", "WAITING");
+		lists.subsumingList.get().add("MAGE", "?");
+		lists.subsumingList.get().add("MESA", "?");
+		lists.subsumingList.get().add("MIRAGE", "?");
+		lists.subsumingList.get().add("NEKROS", "?");
+		lists.subsumingList.get().add("NEZHA", "?");
+		lists.subsumingList.get().add("NIDUS", "?");
+		lists.subsumingList.get().add("NOVA", "?");
+		lists.subsumingList.get().add("NYX", "FORCE");
+		lists.subsumingList.get().add("OBERON", "?");
+		lists.subsumingList.get().add("OBERON", "FORCE");
+		lists.subsumingList.get().add("OCTAVIA", "?");
+		lists.subsumingList.get().add("PROTEA", "?");
+		lists.subsumingList.get().add("REVENANT", "?");
+		lists.subsumingList.get().add("RHINO", "?");
+		lists.subsumingList.get().add("SARYN", "?");
+		lists.subsumingList.get().add("TITANIA", "?");
+		lists.subsumingList.get().add("TRINITY", "?");
+		lists.subsumingList.get().add("VALKYR", "?");
+		lists.subsumingList.get().add("VAUBAN", "?");
+		lists.subsumingList.get().add("VOLT", "FORCE");
+		lists.subsumingList.get().add("WISP", "?");
+		lists.subsumingList.get().add("WUKONG", "?");
+		lists.subsumingList.get().add("XAKU", "?");
+		lists.subsumingList.get().add("ZEPHYR", "DONE");
+		
+		
 	}
+	
+	/*	3 x Trocáveis Mod, Item, Platinum
+	 *   Equipamento > Item > 
+	 *   						Tipo, Nome, Nível Máximo
+	 *  
+	Categoria Warframe
+		Lista
+		 * Mod
+		 * Estado
+		 
+	Ex.
+	Blind Rage | OK
+	 */
 	
 	
 	private static void mostraCalc(Build build) {
