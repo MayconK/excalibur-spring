@@ -14,6 +14,8 @@ public class ExcaliburSpringApplication {
 
 	private static Warframe warframe;
 	
+	static ArrayList<String[]> subsumingLists = new ArrayList<>();
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ExcaliburSpringApplication.class, args);
 		
@@ -48,59 +50,116 @@ public class ExcaliburSpringApplication {
 		list.add( new Warframe("Excalibur Prime") );
 		
 		Tenno Nivek = new Tenno();
+		Nivek.setList( list );
 		Nivek.getList().add( list.get(2) );
 		
 		warframe = Nivek.getList().get(0);
 		
-		helminth.Subsuming("Zephyr");
-		helminth.Subsuming("Chroma");
+		//helminth.Subsuming("Zephyr");
+		//helminth.Subsuming("Chroma");
 
 		
 
-		lists.subsumingList.get().add("ASH", "FORGE");
-		lists.subsumingList.get().add("ATLAS", "?");
-		lists.subsumingList.get().add("BARUUK", "?");
-		lists.subsumingList.get().add("BANSHEE", "FORGE");
-		lists.subsumingList.get().add("CHROMA", "SUBSUMING");
-		lists.subsumingList.get().add("EMBER", "?");
-		lists.subsumingList.get().add("EQUINOX", "CRAFTING");
-		lists.subsumingList.get().add("EXCALIBUR", "?");
-		lists.subsumingList.get().add("FROST", "?");
-		lists.subsumingList.get().add("GARA", "?");
-		lists.subsumingList.get().add("GARUDA", "?");
-		lists.subsumingList.get().add("GAUSS", "?");
-		lists.subsumingList.get().add("GRENDEL", "?");
-		lists.subsumingList.get().add("HARROW", "?");
-		lists.subsumingList.get().add("HILDRYN", "?");
-		lists.subsumingList.get().add("INAROS", "?");
-		lists.subsumingList.get().add("IVARA", "?");
-		lists.subsumingList.get().add("KHORA", "?");
-		lists.subsumingList.get().add("LOKI", "?");
-		lists.subsumingList.get().add("LIMBO", "WAITING");
-		lists.subsumingList.get().add("MAGE", "?");
-		lists.subsumingList.get().add("MESA", "?");
-		lists.subsumingList.get().add("MIRAGE", "?");
-		lists.subsumingList.get().add("NEKROS", "?");
-		lists.subsumingList.get().add("NEZHA", "?");
-		lists.subsumingList.get().add("NIDUS", "?");
-		lists.subsumingList.get().add("NOVA", "?");
-		lists.subsumingList.get().add("NYX", "FORCE");
-		lists.subsumingList.get().add("OBERON", "?");
-		lists.subsumingList.get().add("OBERON", "FORCE");
-		lists.subsumingList.get().add("OCTAVIA", "?");
-		lists.subsumingList.get().add("PROTEA", "?");
-		lists.subsumingList.get().add("REVENANT", "?");
-		lists.subsumingList.get().add("RHINO", "?");
-		lists.subsumingList.get().add("SARYN", "?");
-		lists.subsumingList.get().add("TITANIA", "?");
-		lists.subsumingList.get().add("TRINITY", "?");
-		lists.subsumingList.get().add("VALKYR", "?");
-		lists.subsumingList.get().add("VAUBAN", "?");
-		lists.subsumingList.get().add("VOLT", "FORCE");
-		lists.subsumingList.get().add("WISP", "?");
-		lists.subsumingList.get().add("WUKONG", "?");
-		lists.subsumingList.get().add("XAKU", "?");
-		lists.subsumingList.get().add("ZEPHYR", "DONE");
+		
+		String[] subList = new String[2];
+		subList[0] = "ASH";
+		subList[1] = "FORGE";
+		
+		subsumingLists.add( subList );
+
+		System.out.println( subsumingLists.get(0).length );
+		
+		System.out.println( subsumingLists.get(0)[0] );
+		
+		//lists.subsumingList.get().add("ASH", "FORGE");
+		addSubsuming("ATLAS", "?");
+		addSubsuming("BARUUK", "?");
+		addSubsuming("BANSHEE", "FORGE");
+		addSubsuming("CHROMA", "DONE");
+		addSubsuming("EMBER", "SUBSUMING");
+		addSubsuming("EQUINOX", "CRAFTING");
+		addSubsuming("EXCALIBUR", "?");
+		addSubsuming("FROST", "?");
+		addSubsuming("GARA", "?");
+		addSubsuming("GARUDA", "?");
+		addSubsuming("GAUSS", "?");
+		addSubsuming("GRENDEL", "?");
+		addSubsuming("HARROW", "?");
+		addSubsuming("HILDRYN", "?");
+		addSubsuming("INAROS", "?");
+		addSubsuming("IVARA", "?");
+		addSubsuming("KHORA", "?");
+		addSubsuming("LOKI", "?");
+		addSubsuming("LIMBO", "WAITING");
+		addSubsuming("MAGE", "?");
+		addSubsuming("MESA", "?");
+		addSubsuming("MIRAGE", "?");
+		addSubsuming("NEKROS", "?");
+		addSubsuming("NEZHA", "?");
+		addSubsuming("NIDUS", "?");
+		addSubsuming("NOVA", "?");
+		addSubsuming("NYX", "FORGE");
+		addSubsuming("OBERON", "?");
+		addSubsuming("OBERON", "FORGE");
+		addSubsuming("OCTAVIA", "?");
+		addSubsuming("PROTEA", "?");
+		addSubsuming("REVENANT", "?");
+		addSubsuming("RHINO", "?");
+		addSubsuming("SARYN", "?");
+		addSubsuming("TITANIA", "?");
+		addSubsuming("TRINITY", "?");
+		addSubsuming("VALKYR", "?");
+		addSubsuming("VAUBAN", "?");
+		addSubsuming("VOLT", "FORGE");
+		addSubsuming("WISP", "?");
+		addSubsuming("WUKONG", "?");
+		addSubsuming("XAKU", "?");
+		addSubsuming("ZEPHYR", "DONE");
+		
+		checkSubsuming();
+	}
+	
+	private static void addSubsuming(String name, String status) {
+		String[] subList = new String[2];
+		subList[0] = name;
+		subList[1] = status;
+		
+		subsumingLists.add( subList );
+	}
+	
+	private static void checkSubsuming() {
+		int done = 0, waiting = 0, subsuming, crafting = 0, forge = 0, total = 0;
+		String subsumingWarframe = "";
+		
+		
+		System.out.println(" -- CHECKING SUBSUMING --");
+		
+		for (int i = 0; i < subsumingLists.size(); i++) {
+			if( subsumingLists.get(i)[1].equals("DONE") )
+				done++;
+			if( subsumingLists.get(i)[1].equals("WAITING") )
+				waiting++;
+			if( subsumingLists.get(i)[1].equals("CRAFTING") )
+				crafting++;
+			if( subsumingLists.get(i)[1].equals("FORGE") )
+				forge++;
+			if( subsumingLists.get(i)[1].equals("SUBSUMING") )
+			subsumingWarframe = subsumingLists.get(i)[0];
+			if( !subsumingLists.get(i)[1].equals(null) )
+				total++;
+		}
+
+		System.out.println("Subsuming warframe: " + subsumingWarframe);
+		System.out.println("Subsuming done: " + done + "/" + subsumingLists.size() );
+		System.out.println("Waiting for Subsuming: " + waiting + "/" + (subsumingLists.size()-done) );
+		System.out.println("Waiting forge done: " + forge + "/" + (subsumingLists.size()-done-waiting) );
+		System.out.println("Crafting parts: " + crafting + "/" + (subsumingLists.size()-done-waiting-forge) );
+		System.out.println(" -- END CHECK --" + total + "\n");
+	}
+		
+		//subsumingLists.add("teste", "teste")
+		/*
+		
 		
 		
 	}
@@ -136,7 +195,7 @@ public class ExcaliburSpringApplication {
 		System.out.println("      SLOT 7: " + build.slot7);
 		System.out.println("      SLOT 8: " + build.slot8);
 	}
-	
+	/*
 	private static void ExaltedBlade() {
 		Integer damage = 250;
 		
@@ -171,7 +230,7 @@ public class ExcaliburSpringApplication {
 		System.out.println("");
 	}
 	
-	
+	*/
 	
 	private static void calculaModsWarframe() {
 		
