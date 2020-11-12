@@ -117,6 +117,9 @@ public class ExcaliburSpringApplication {
 		addSubsuming("ZEPHYR", "DONE");
 		
 		checkSubsuming();
+		listSubsumingDone();
+		listSubsumingWaiting();
+		listSubsumingForge();
 	}
 	
 	private static void addSubsuming(String name, String status) {
@@ -151,10 +154,38 @@ public class ExcaliburSpringApplication {
 
 		System.out.println("Subsuming warframe: " + subsumingWarframe);
 		System.out.println("Subsuming done: " + done + "/" + subsumingLists.size() );
+		if( !subsumingWarframe.equals("") ) done++;
 		System.out.println("Waiting for Subsuming: " + waiting + "/" + (subsumingLists.size()-done) );
 		System.out.println("Waiting forge done: " + forge + "/" + (subsumingLists.size()-done-waiting) );
 		System.out.println("Crafting parts: " + crafting + "/" + (subsumingLists.size()-done-waiting-forge) );
-		System.out.println(" -- END CHECK --" + total + "\n");
+		System.out.println(" -- END CHECK --" + "" + "\n");
+	}
+
+	private static void listSubsumingDone() {
+		System.out.println(" -- LISTING DONE SUBSUMINGS --");
+		for (int i = 0; i < subsumingLists.size(); i++) {
+			if( subsumingLists.get(i)[1].equals("DONE") )
+				System.out.println( " " + subsumingLists.get(i)[0]);
+		}
+		System.out.println(" -- END LIST --\n");
+	}
+	
+	private static void listSubsumingWaiting() {
+		System.out.println(" -- LISTING WARFRAMES WAITING FOR SUBSUMING --");
+		for (int i = 0; i < subsumingLists.size(); i++) {
+			if( subsumingLists.get(i)[1].equals("WAITING") )
+				System.out.println( " " + subsumingLists.get(i)[0]);
+		}
+		System.out.println(" -- END LIST --\n");
+	}
+	
+	private static void listSubsumingForge() {
+		System.out.println(" -- LISTING WARFRAMES IN FORGE FOR SUBSUMING --");
+		for (int i = 0; i < subsumingLists.size(); i++) {
+			if( subsumingLists.get(i)[1].equals("FORGE") )
+				System.out.println( " " + subsumingLists.get(i)[0]);
+		}
+		System.out.println(" -- END LIST --\n");
 	}
 		
 		//subsumingLists.add("teste", "teste")
