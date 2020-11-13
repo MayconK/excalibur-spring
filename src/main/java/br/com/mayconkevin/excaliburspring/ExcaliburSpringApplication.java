@@ -72,47 +72,47 @@ public class ExcaliburSpringApplication {
 		System.out.println( subsumingLists.get(0)[0] );
 		
 		//lists.subsumingList.get().add("ASH", "FORGE");
-		addSubsuming("ATLAS", "?");
+		addSubsuming("ATLAS", "CRAFTING");
 		addSubsuming("BARUUK", "?");
 		addSubsuming("BANSHEE", "FORGE");
 		addSubsuming("CHROMA", "DONE");
-		addSubsuming("EMBER", "SUBSUMING");
+		addSubsuming("EMBER", "DONE");
 		addSubsuming("EQUINOX", "CRAFTING");
 		addSubsuming("EXCALIBUR", "?");
 		addSubsuming("FROST", "?");
 		addSubsuming("GARA", "?");
 		addSubsuming("GARUDA", "?");
-		addSubsuming("GAUSS", "?");
+		addSubsuming("GAUSS", "CRAFTING");
 		addSubsuming("GRENDEL", "?");
 		addSubsuming("HARROW", "?");
 		addSubsuming("HILDRYN", "?");
+		addSubsuming("HYDROID", "?");
 		addSubsuming("INAROS", "?");
-		addSubsuming("IVARA", "?");
-		addSubsuming("KHORA", "?");
+		addSubsuming("IVARA", "CRAFTING");
+		addSubsuming("KHORA", "FORGE");
 		addSubsuming("LOKI", "?");
 		addSubsuming("LIMBO", "WAITING");
-		addSubsuming("MAGE", "?");
+		addSubsuming("MAG", "?");
 		addSubsuming("MESA", "?");
 		addSubsuming("MIRAGE", "?");
-		addSubsuming("NEKROS", "?");
-		addSubsuming("NEZHA", "?");
-		addSubsuming("NIDUS", "?");
+		addSubsuming("NEKROS", "FORGE");
+		addSubsuming("NEZHA", "WAITING");
+		addSubsuming("NIDUS", "WAITING");
 		addSubsuming("NOVA", "?");
 		addSubsuming("NYX", "FORGE");
-		addSubsuming("OBERON", "?");
 		addSubsuming("OBERON", "FORGE");
 		addSubsuming("OCTAVIA", "?");
 		addSubsuming("PROTEA", "?");
 		addSubsuming("REVENANT", "?");
 		addSubsuming("RHINO", "?");
 		addSubsuming("SARYN", "?");
-		addSubsuming("TITANIA", "?");
+		addSubsuming("TITANIA", "SUBSUMING");
 		addSubsuming("TRINITY", "?");
 		addSubsuming("VALKYR", "?");
-		addSubsuming("VAUBAN", "?");
+		addSubsuming("VAUBAN", "FORGE");
 		addSubsuming("VOLT", "FORGE");
 		addSubsuming("WISP", "?");
-		addSubsuming("WUKONG", "?");
+		addSubsuming("WUKONG", "CRAFTING");
 		addSubsuming("XAKU", "?");
 		addSubsuming("ZEPHYR", "DONE");
 		
@@ -120,6 +120,47 @@ public class ExcaliburSpringApplication {
 		listSubsumingDone();
 		listSubsumingWaiting();
 		listSubsumingForge();
+		
+		calcAteQuandoAguentoApanha(550, 225);
+		betterArmorOrHealth(550, 225);
+	}
+	
+	private static void calcAteQuandoAguentoApanha(Integer health, Integer armor) {
+		Integer dano = 100;
+		
+		System.out.println(" -- CALCULANDO O QUANTO VOCÊ CONSEGUE APANHAR --");
+		
+		System.out.println("Você declarou que tem: " + health + " de vida!");
+		System.out.println("Você declarou que tem: " + armor + " de armadura!");
+		System.out.printf("Sua redução de dano é: %.2f", damageReduction(armor)*100 ); System.out.println("%");
+		System.out.println("Você possui o equivalente em: " + effectiveHealth(health, armor) + " de vida.");
+		System.out.println("Sua armadura proporcionou +" + (effectiveHealth(health, armor)/health*100) + "% (" + eHPMultiplier(armor) + "x) de vida.");
+		System.out.println("\nHORA DA PAULADA!");
+		System.out.println(dano + " de dano - Tamaho da paulada que vc tá levando!");
+		System.out.println(effectiveHealth(health, armor)/dano + "x < Você aguenta esse tanto de paulada!");
+		System.out.println();
+	}
+	
+	private static void betterArmorOrHealth(Integer baseHealth, int baseArmor) {
+		
+		double calcVitality = effectiveHealth((int) (baseHealth*4.4+baseHealth*3), baseArmor);
+		double calcSteelFiber = effectiveHealth(baseHealth*3, (int) (baseArmor*2.1));
+		
+		System.out.println("Vida equivalente usando Vitality: " + calcVitality);
+		System.out.println("Vida equivalente usando Steel Fiber: " + calcSteelFiber);
+		
+	}
+
+	private static double damageReduction(double netArmor) {
+		return netArmor / (netArmor+300);
+	}
+	
+	private static Integer effectiveHealth(Integer health, int netArmor) {
+		return  health * (netArmor+300)/300 ;
+	}
+	
+	private static Double eHPMultiplier(int netArmor) {
+		return ( (double)(netArmor)+300 ) /300 ;
 	}
 	
 	private static void addSubsuming(String name, String status) {
