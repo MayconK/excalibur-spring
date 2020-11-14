@@ -1,12 +1,14 @@
 package br.com.mayconkevin.excaliburspring;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.mayconkevin.excaliburspring.domain.Tenno;
 import br.com.mayconkevin.excaliburspring.domain.Warframe;
+import br.com.mayconkevin.excaliburspring.mechanics.Mathematical;
 
 
 @SpringBootApplication
@@ -72,58 +74,106 @@ public class ExcaliburSpringApplication {
 		System.out.println( subsumingLists.get(0)[0] );
 		
 		//lists.subsumingList.get().add("ASH", "FORGE");
-		addSubsuming("ATLAS", "CRAFTING");
-		addSubsuming("BARUUK", "?");
-		addSubsuming("BANSHEE", "FORGE");
+
+		addSubsuming("BANSHEE", "SUBSUMING");
 		addSubsuming("CHROMA", "DONE");
 		addSubsuming("EMBER", "DONE");
+		addSubsuming("TITANIA", "DONE");
+		addSubsuming("ZEPHYR", "DONE");
+		addSubsuming("NYX", "WAITING");
+		addSubsuming("LIMBO", "WAITING");
+		addSubsuming("NEZHA", "WAITING");
+		addSubsuming("NIDUS", "WAITING");
+		addSubsuming("OBERON", "WAITING");
+		addSubsuming("VOLT", "WAITING");
+		addSubsuming("KHORA", "FORGE");
+		addSubsuming("NEKROS", "FORGE");
+		addSubsuming("VAUBAN", "FORGE");
+		addSubsuming("WUKONG", "FORGE");
+		addSubsuming("ATLAS", "CRAFTING");
 		addSubsuming("EQUINOX", "CRAFTING");
+		addSubsuming("GAUSS", "CRAFTING");
+		addSubsuming("IVARA", "CRAFTING");
+		addSubsuming("BARUUK", "?");
 		addSubsuming("EXCALIBUR", "?");
 		addSubsuming("FROST", "?");
 		addSubsuming("GARA", "?");
 		addSubsuming("GARUDA", "?");
-		addSubsuming("GAUSS", "CRAFTING");
 		addSubsuming("GRENDEL", "?");
 		addSubsuming("HARROW", "?");
 		addSubsuming("HILDRYN", "?");
 		addSubsuming("HYDROID", "?");
 		addSubsuming("INAROS", "?");
-		addSubsuming("IVARA", "CRAFTING");
-		addSubsuming("KHORA", "FORGE");
 		addSubsuming("LOKI", "?");
-		addSubsuming("LIMBO", "WAITING");
 		addSubsuming("MAG", "?");
 		addSubsuming("MESA", "?");
 		addSubsuming("MIRAGE", "?");
-		addSubsuming("NEKROS", "FORGE");
-		addSubsuming("NEZHA", "WAITING");
-		addSubsuming("NIDUS", "WAITING");
 		addSubsuming("NOVA", "?");
-		addSubsuming("NYX", "FORGE");
-		addSubsuming("OBERON", "FORGE");
 		addSubsuming("OCTAVIA", "?");
 		addSubsuming("PROTEA", "?");
 		addSubsuming("REVENANT", "?");
 		addSubsuming("RHINO", "?");
 		addSubsuming("SARYN", "?");
-		addSubsuming("TITANIA", "SUBSUMING");
 		addSubsuming("TRINITY", "?");
 		addSubsuming("VALKYR", "?");
-		addSubsuming("VAUBAN", "FORGE");
-		addSubsuming("VOLT", "FORGE");
 		addSubsuming("WISP", "?");
-		addSubsuming("WUKONG", "CRAFTING");
 		addSubsuming("XAKU", "?");
-		addSubsuming("ZEPHYR", "DONE");
+
+		// Using Scanner for Getting Input from User 
+        Scanner in = new Scanner(System.in); 
+		String opcao;
+		while (true) {
+			System.out.println(" [1] Módulo Subsumissão"
+						   + "\n [2] Módulo Eficiência de Vida");
+			System.out.print("Digite o menu correspondente: ");
+			
+			opcao = in.nextLine();
+
+			if (!isOpcao(opcao)) System.out.println(" Opção inválida!");
+			else {
+				
+				switch (opcao) {
+				case "1":
+					System.out.println("Opção selecionada 1 - Verificando Módulo de Submissão");
+					checkSubsuming();
+					listSubsumingDone();
+					listSubsumingWaiting();
+					listSubsumingForge();
+					break;
+				case "2":
+					System.out.println("Opção selecionada 2 - Verificando Módulo EHP");
+					calcAteQuandoAguentoApanha(550, 225);
+					betterArmorOrHealth(550, 225);
+
+				default:
+					System.out.println("Opção inválida!");
+					break;
+				}
+			}
+		}
+		/*
 		
-		checkSubsuming();
-		listSubsumingDone();
-		listSubsumingWaiting();
-		listSubsumingForge();
 		
-		calcAteQuandoAguentoApanha(550, 225);
-		betterArmorOrHealth(550, 225);
+		*/
 	}
+	
+	private static boolean isOpcao(String opcao) {
+		if (isNumber(opcao))
+			return true;
+		return false;
+		 
+	}
+	private static boolean isNumber(String s) {
+		if (s == null) return false;
+		try {
+			Double.parseDouble(s);
+		} catch (Exception e) {
+			//System.out.println("Erro: " +e);
+			return false;
+		}
+		return true;
+	}
+	
 	
 	private static void calcAteQuandoAguentoApanha(Integer health, Integer armor) {
 		Integer dano = 100;
@@ -132,35 +182,22 @@ public class ExcaliburSpringApplication {
 		
 		System.out.println("Você declarou que tem: " + health + " de vida!");
 		System.out.println("Você declarou que tem: " + armor + " de armadura!");
-		System.out.printf("Sua redução de dano é: %.2f", damageReduction(armor)*100 ); System.out.println("%");
-		System.out.println("Você possui o equivalente em: " + effectiveHealth(health, armor) + " de vida.");
-		System.out.println("Sua armadura proporcionou +" + (effectiveHealth(health, armor)/health*100) + "% (" + eHPMultiplier(armor) + "x) de vida.");
+		System.out.printf("Sua redução de dano é: %.2f", Mathematical.damageReduction(armor)*100 ); System.out.println("%");
+		System.out.println("Você possui o equivalente em: " + Mathematical.effectiveHealth(health, armor) + " de vida.");
+		System.out.println("Sua armadura proporcionou +" + (Mathematical.effectiveHealth(health, armor)/health*100) + "% (" + Mathematical.eHPMultiplier(armor) + "x) de vida.");
 		System.out.println("\nHORA DA PAULADA!");
 		System.out.println(dano + " de dano - Tamaho da paulada que vc tá levando!");
-		System.out.println(effectiveHealth(health, armor)/dano + "x < Você aguenta esse tanto de paulada!");
+		System.out.println(Mathematical.effectiveHealth(health, armor)/dano + "x < Você aguenta esse tanto de paulada!");
 		System.out.println();
 	}
 	
 	private static void betterArmorOrHealth(Integer baseHealth, int baseArmor) {
-		
-		double calcVitality = effectiveHealth((int) (baseHealth*4.4+baseHealth*3), baseArmor);
-		double calcSteelFiber = effectiveHealth(baseHealth*3, (int) (baseArmor*2.1));
+		double calcVitality = Mathematical.effectiveHealth((int) (baseHealth*4.4+baseHealth*3), baseArmor);
+		double calcSteelFiber = Mathematical.effectiveHealth(baseHealth*3, (int) (baseArmor*2.1));
 		
 		System.out.println("Vida equivalente usando Vitality: " + calcVitality);
 		System.out.println("Vida equivalente usando Steel Fiber: " + calcSteelFiber);
 		
-	}
-
-	private static double damageReduction(double netArmor) {
-		return netArmor / (netArmor+300);
-	}
-	
-	private static Integer effectiveHealth(Integer health, int netArmor) {
-		return  health * (netArmor+300)/300 ;
-	}
-	
-	private static Double eHPMultiplier(int netArmor) {
-		return ( (double)(netArmor)+300 ) /300 ;
 	}
 	
 	private static void addSubsuming(String name, String status) {
